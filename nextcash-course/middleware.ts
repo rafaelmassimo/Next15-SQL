@@ -1,4 +1,6 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+
+const isProcetedRoute = createRouteMatcher();
 
 export default clerkMiddleware();
 
