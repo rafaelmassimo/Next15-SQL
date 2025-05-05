@@ -1,23 +1,36 @@
-'use client'
+'use client';
 
-import { UserButton } from '@clerk/nextjs'
-import React from 'react'
-
+import { UserButton } from '@clerk/nextjs';
+import { ChartColumnBigIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
 const UserDropdown = () => {
-  return (
-    <div >
-      <UserButton showName appearance={{
-        elements: {
-            userButtonOuterIdentifier: {
-                color: 'white'
-            }
-        }
-      }} />
-    </div>
-  )
-}
+	const router = useRouter();
+	return (
+		<div>
+			<UserButton
+				showName
+				appearance={{
+					elements: {
+						userButtonOuterIdentifier: {
+							color: 'white',
+						},
+					},
+				}}
+			>
+				<UserButton.MenuItems>
+					<UserButton.Action
+						label="Dashboard"
+						labelIcon={<ChartColumnBigIcon size={16} />}
+						onClick={() => {
+							router.push('/dashboard');
+						}}
+					/>
+				</UserButton.MenuItems>
+			</UserButton>
+		</div>
+	);
+};
 
-export default UserDropdown
-
- 
+export default UserDropdown;
