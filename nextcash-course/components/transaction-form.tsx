@@ -101,7 +101,8 @@ const TransactionForm = () => {
 										<Popover>
 											<PopoverTrigger asChild>
 												<Button
-												variant={'outline'}
+													variant={'outline'}
+													//* cn allows you to add a condition inside the classname so it the condition satisfy the variable then the last css will
 													className={cn(
 														'w-full justify-start text-left font-normal',
 														!field.value && 'text-muted-foreground',
@@ -111,12 +112,21 @@ const TransactionForm = () => {
 													{field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
 												</Button>
 											</PopoverTrigger>
-											<PopoverContent className="w-auto p-0">
-												<Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus 
+											<PopoverContent
+												className=" flex flex-col text-red-600 p-0"
+												side="bottom"
+												align="start"
+											>
+												<Calendar
+													className="flex flex-col z-50 bg-sky-900"
+													mode="single"
+													selected={field.value}
+													onSelect={field.onChange}
+													initialFocus
 													disabled={{
-														after: new Date()
+														after: new Date(),
 													}}
-														/>
+												/>
 											</PopoverContent>
 										</Popover>
 									</FormControl>
@@ -133,17 +143,16 @@ const TransactionForm = () => {
 								<FormItem>
 									<FormLabel>Amount</FormLabel>
 									<FormControl>
-										<Input {...field} type='number'/>
+										<Input {...field} type="number" />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
 							);
 						}}
 					/>
-
 				</fieldset>
-				<fieldset className='mt-5 flex flex-col gap-5'>
-				<FormField
+				<fieldset className="mt-5 flex flex-col gap-5">
+					<FormField
 						control={form.control}
 						name="description"
 						render={({ field }) => {
@@ -151,16 +160,14 @@ const TransactionForm = () => {
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
-									<Input {...field} type='text'/>
+										<Input {...field} type="text" />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
 							);
 						}}
 					/>
-					<Button type='submit'>
-						Submit
-					</Button>
+					<Button type="submit">Submit</Button>
 				</fieldset>
 			</form>
 		</Form>
